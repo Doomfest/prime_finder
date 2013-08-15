@@ -1,4 +1,4 @@
-prime_finder
+Prime Finder
 ============
 
 Finds prime numbers.
