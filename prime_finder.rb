@@ -1,18 +1,12 @@
 # This program finds prime numbers and stores them into a file.
 #
-#
 
-# Reads files backwards starting from bottom.
 require_relative "primality_tester"
+require_relative "file_manager"
 require_relative "version"
-require_relative "intro_message"
-require "elif"
 
 # Keeps the programming until otherwise
 running = true
-
-# The file which stores the prime numbers
-$prime_file = "prime_numbers.txt"
 
 # Loads the last prime found and continues finding primes from that number.
 #current_test_number = Elif.open($prime_file) {|f| f.gets}.to_i
@@ -21,24 +15,28 @@ $prime_file = "prime_numbers.txt"
   current_prime = 3
 #end
 
+fileManager = FileManager.new("prime_numbers.txt")
 primeTester = PrimalityTester.new
 
 # Display intro message.
-intro_message()
-
-puts "Starting at prime: #{current_prime}."
+puts "Running prime finder " + version()
+puts "Primes found are logged into #{fileManager.prime_filename}"
 
 # Open files for writing.
-prime_results_file = File.open($prime_file, "w")
-prime_results_file.write(2)
-prime_results_file.write("\n")
+fileManager.open()
+
+puts "Writing prime '2' to file."
+fileManager.write("prime", 2)
+fileManager.write("prime", "\n")
+
+puts "Starting at prime: #{current_prime}."
 
 while running  
   # Check if current number is prime
   if (primeTester.testPrime(current_prime))
     # Store the prime number
-    prime_results_file.write(current_prime)
-    prime_results_file.write("\n")
+    fileManager.write("prime", current_prime)
+    fileManager.write("prime", "\n")
   end
 
   # Check if we need to stop the program without blocking it.
@@ -51,5 +49,5 @@ while running
 end
 
 # Close files when finished with them.
-prime_results_file.close
+fileManager.close()
 
