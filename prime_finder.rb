@@ -4,6 +4,8 @@
 
 # Reads files backwards starting from bottom.
 require_relative "primality_tester"
+require_relative "version"
+require_relative "intro_message"
 require "elif"
 
 # Keeps the programming until otherwise
@@ -11,12 +13,6 @@ running = true
 
 # The file which stores the prime numbers
 $prime_file = "prime_numbers.txt"
-
-# Intro message
-def motd
-  puts "Running prime finder."
-  puts "Primes found are logged into #{$prime_file}"
-end
 
 # Loads the last prime found and continues finding primes from that number.
 #current_test_number = Elif.open($prime_file) {|f| f.gets}.to_i
@@ -28,7 +24,7 @@ end
 primeTester = PrimalityTester.new
 
 # Display intro message.
-motd()
+intro_message()
 
 puts "Starting at prime: #{current_prime}."
 
