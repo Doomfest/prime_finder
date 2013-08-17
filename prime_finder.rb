@@ -5,31 +5,22 @@ require_relative "primality_tester"
 require_relative "file_manager"
 require_relative "version"
 
+# Display intro message.
+puts "Running prime finder " + version()
+
 # Keeps the programming until otherwise
 running = true
-
-# Loads the last prime found and continues finding primes from that number.
-#current_test_number = Elif.open($prime_file) {|f| f.gets}.to_i
-
-#if (current_test_number == nil)
-  current_prime = 3
-#end
 
 fileManager = FileManager.new("prime_numbers.txt")
 primeTester = PrimalityTester.new
 
-# Display intro message.
-puts "Running prime finder " + version()
-puts "Primes found are logged into #{fileManager.prime_filename}"
-
 # Open files for writing.
 fileManager.open()
 
-puts "Writing prime '2' to file."
-fileManager.write("prime", 2)
-fileManager.write("prime", "\n")
+# Loads the last prime found and continues finding primes
+current_prime = fileManager.loadLastNumber("prime")
 
-puts "Starting at prime: #{current_prime}."
+puts "Starting at number: #{current_prime}."
 
 while running  
   # Check if current number is prime
@@ -43,8 +34,14 @@ while running
 #  if (gets.chomp == 'q')
 #    running = false
 #  else
-    # Test next number
-    current_prime += 1
+    # Test next number (+2 because even numbers cannot be prime by definition)
+    # If last digit is a 5 then skip (multiple of 5)
+    if (current_prime.to_s.slice(-1) == 5)
+      current_prime += 4
+    else
+      current_prime += 2
+    end
+  
 #  end
 end
 
