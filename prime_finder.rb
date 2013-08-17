@@ -36,9 +36,9 @@ while running
 #  else
     # Test next number (+2 because even numbers cannot be prime by definition)
     # If last digit is a 5 then skip (multiple of 5)
+    current_prime += 2
+    
     if (current_prime.to_s.slice(-1) == 5)
-      current_prime += 4
-    else
       current_prime += 2
     end
   
