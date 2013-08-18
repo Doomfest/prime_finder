@@ -1,3 +1,4 @@
+
 class PrimalityTester
   
   attr_accessor :divisor
@@ -7,7 +8,7 @@ class PrimalityTester
     
   # Test if the current number is prime. 
   def testPrime(prime)
-    @divisor = prime
+    @divisor = Math.sqrt(prime).round
     
     while (@divisor -= 1) > 1 
     
