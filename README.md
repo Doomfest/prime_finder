@@ -2,7 +2,8 @@ Prime Finder
 ============
 
 Finds prime numbers.
-
+## Version 0.1.2
++ Added trial division for finding primes.
 
 ## Version 0.1.1
 + Finding basic prime number optimized by not testing even numbers. (multiples of 2)
