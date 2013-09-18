@@ -2,6 +2,10 @@ Prime Finder
 ============
 
 Finds prime numbers.
+
+## Version 0.2.0
++ Added code to find mersenne primes.
+
 ## Version 0.1.2
 + Added trial division for finding primes.
 
